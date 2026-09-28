@@ -1,0 +1,286 @@
+{
+  "seller_name": "Maya",
+  "address": "18 Lauriston Road, Hackney, London E9 7HA",
+  "runner_name": "Sam",
+  "transcript": "Okay, is it recording? Right. So this is everything from the wardrobe clear-out. First one, Levi's denim jacket, the trucker one. I've had it since sixth form, it's a medium. It's a bit faded on the collar and there's a tiny mark on the sleeve, just there. Next, this Nike sweatshirt, it's from the nineties, it was my dad's, he wore it to five-a-side for years. Size large. Then this, Lakers jersey, Kobe, number 24, and it's signed by Kobe Bryant. My uncle got it signed in LA in 2009 when he was out there for work, it's just been sat in a drawer ever since. This denim jacket, my sister painted it, she's at Central Saint Martins. All the lettering on the front is done by hand, took her weeks. There's no label, it fits like a medium. I want £80 for it, honestly, she'd kill me if it went for less. This jumper, got it at a car boot, no label on it but it's proper wool, bit scratchy. Fits a large. And last one, St Michael dress, the old M&S one, size 12. It's missing the belt but otherwise it's perfect. That's it, that's the lot.",
+  "items": [
+    {
+      "key": "levis-trucker",
+      "match": ["levi", "jacket"],
+      "label": "Levi's denim trucker jacket",
+      "brand": "Levi's",
+      "type": "jacket",
+      "type_label": "denim trucker jacket",
+      "size": "M",
+      "brand_tier": "premium",
+      "seller_story": "I've had it since sixth form. It's a medium, a bit faded on the collar, and there's a tiny mark on the sleeve.",
+      "story_safe": null,
+      "claim": null,
+      "claim_noun": null,
+      "claim_line": null,
+      "seller_ask": null,
+      "proof_request": null,
+      "search_query": "Levi's denim trucker jacket M vintage",
+      "estimate_notes": ["Faded collar and cuffs", "Small mark on the left sleeve"],
+      "grade": "B",
+      "condition_notes": [
+        "Natural fading on the collar and cuffs",
+        "Small faint mark on the left sleeve, about 1cm",
+        "All buttons present and working"
+      ],
+      "special": null,
+      "photos": [
+        "https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?w=900&q=80",
+        "https://placehold.co/900x1200/e9e4da/5b5346/jpeg?text=Trucker+jacket+back",
+        "https://images.unsplash.com/photo-1715532485865-9e2f720c4107?w=900&q=80",
+        "https://images.unsplash.com/photo-1580644228275-2b826dbec5bf?w=900&q=80"
+      ],
+      "claim_proof": null,
+      "retake": null,
+      "comps": [
+        { "source": "eBay", "title": "Levis 70506 Trucker Jacket Made in UK 90s Mid Wash Size M", "price": 4900, "url": "https://www.ebay.co.uk/itm/296534817702" },
+        { "source": "Depop", "title": "levi's vintage trucker jacket 90s medium wash, size m", "price": 4200, "url": "https://www.depop.com/products/eastendthreads-levis-vintage-trucker-jacket-90s/" },
+        { "source": "eBay", "title": "Vintage Levi's Type 3 Trucker Denim Jacket Blue Mens Medium", "price": 4500, "url": "https://www.ebay.co.uk/itm/335687201934" },
+        { "source": "Vestiaire Collective", "title": "Levi's Blue Denim - Jeans Jacket, M", "price": 5500, "url": "https://www.vestiairecollective.com/men-clothing/jackets/levi-s/blue-denim-jeans-levi-s-jacket-46893120.shtml" },
+        { "source": "eBay", "title": "Levi's Vintage 90s Denim Trucker Jacket Size M Faded", "price": 5200, "url": "https://www.ebay.co.uk/itm/187245069318" }
+      ],
+      "description": {
+        "title": "Levi's Denim Trucker Jacket, Mid Wash, Size M",
+        "body": "Owned since sixth form and worn in the best way. The denim has softened up and faded naturally, most of all around the collar and cuffs.\n\nClassic trucker cut in a medium, with every button present and working. There's one small faint mark on the left sleeve, about 1cm, and you can see it in the photos.",
+        "proof_line": null
+      }
+    },
+    {
+      "key": "nike-crewneck",
+      "match": ["nike"],
+      "label": "90s Nike sweatshirt",
+      "brand": "Nike",
+      "type": "hoodie",
+      "type_label": "crewneck sweatshirt",
+      "size": "L",
+      "brand_tier": "premium",
+      "seller_story": "It was my dad's, he wore it to five-a-side for years. Size large.",
+      "story_safe": null,
+      "claim": null,
+      "claim_noun": null,
+      "claim_line": null,
+      "seller_ask": null,
+      "proof_request": null,
+      "search_query": "90s Nike sweatshirt white embroidered swoosh L",
+      "estimate_notes": ["Slight bobbling on the cuffs"],
+      "grade": "B",
+      "condition_notes": [
+        "Light bobbling on the cuffs",
+        "Faint yellowing inside the collar",
+        "Swoosh embroidery intact"
+      ],
+      "special": null,
+      "photos": [
+        "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=900&q=80",
+        "https://placehold.co/900x1200/e9e4da/5b5346/jpeg?text=Sweatshirt+back",
+        "https://images.unsplash.com/photo-1742272108714-9ef3c24b4b3f?w=900&q=80",
+        "https://placehold.co/900x1200/e9e4da/5b5346/jpeg?text=Nike+tag"
+      ],
+      "claim_proof": null,
+      "retake": null,
+      "comps": [
+        { "source": "eBay", "title": "Vintage 90s Nike Sweatshirt White Embroidered Swoosh Crew Neck Large", "price": 3500, "url": "https://www.ebay.co.uk/itm/276843105529" },
+        { "source": "Depop", "title": "vintage nike white crewneck small swoosh 90s, size L", "price": 3200, "url": "https://www.depop.com/products/kitbagvintage-vintage-nike-white-crewneck-small/" },
+        { "source": "eBay", "title": "Nike Vintage Mini Swoosh Sweatshirt White Mens L Grey Tag", "price": 3800, "url": "https://www.ebay.co.uk/itm/305961278840" },
+        { "source": "Vestiaire Collective", "title": "Nike White Cotton Knitwear & Sweatshirt, L", "price": 4500, "url": "https://www.vestiairecollective.com/men-clothing/knitwear-sweatshirts/nike/white-cotton-nike-knitwear-sweatshirt-47015562.shtml" },
+        { "source": "Depop", "title": "90s nike jumper white embroidered logo large", "price": 2800, "url": "https://www.depop.com/products/lateseventiesloft-90s-nike-jumper-white-embroidered/" }
+      ],
+      "description": {
+        "title": "90s Nike Embroidered Swoosh Sweatshirt, White, Size L",
+        "body": "This was the seller's dad's, worn to five-a-side for years, so it's properly broken in and soft.\n\nWhite crewneck with the small embroidered swoosh, size large. Light bobbling on the cuffs and a faint yellow tinge inside the collar, otherwise clean. The swoosh embroidery is intact.",
+        "proof_line": null
+      }
+    },
+    {
+      "key": "kobe-jersey",
+      "match": ["jersey"],
+      "label": "adidas Lakers Bryant 24 jersey",
+      "brand": "adidas",
+      "type": "other",
+      "type_label": "basketball jersey",
+      "size": "L",
+      "brand_tier": "premium",
+      "seller_story": "My uncle got it signed by Kobe Bryant in LA in 2009, when he was out there for work. It's been in a drawer ever since.",
+      "story_safe": "My uncle brought it back from LA in 2009, when he was out there for work. It's been in a drawer ever since.",
+      "claim": "signed by Kobe Bryant",
+      "claim_noun": "the signature",
+      "claim_line": "Seller says it's signed by Kobe Bryant. Close-up of the signature included.",
+      "seller_ask": null,
+      "proof_request": "You said it's signed by Kobe Bryant. Do you have a photo of it being signed, a receipt or a certificate?",
+      "search_query": "adidas Lakers Kobe Bryant 24 jersey white L",
+      "estimate_notes": ["Marker writing on the front number"],
+      "grade": "B",
+      "condition_notes": [
+        "Light pilling on the side panels",
+        "Numbers and lettering intact, no peeling",
+        "Marker writing across the front number"
+      ],
+      "special": null,
+      "photos": [
+        "https://placehold.co/900x1200/e9e4da/5b5346/jpeg?text=Lakers+jersey+front",
+        "https://images.unsplash.com/photo-1580089595767-98745d7025c5?w=900&q=80",
+        "https://placehold.co/900x1200/e9e4da/5b5346/jpeg?text=Signature+(blurry)",
+        "https://placehold.co/900x1200/e9e4da/5b5346/jpeg?text=adidas+label"
+      ],
+      "claim_proof": null,
+      "retake": {
+        "photo_requests": ["The signature is blurry, get a close-up in good light"],
+        "request_summary": "a clearer shot of the signature",
+        "photos_after": [
+          "https://placehold.co/900x1200/e9e4da/5b5346/jpeg?text=Signature+close-up",
+          "https://placehold.co/900x1200/e9e4da/5b5346/jpeg?text=Signature+at+an+angle"
+        ],
+        "claim_proof": "https://placehold.co/900x1200/e9e4da/5b5346/jpeg?text=Signature+close-up"
+      },
+      "comps": [
+        { "source": "eBay", "title": "Adidas Los Angeles Lakers Kobe Bryant #24 Swingman Jersey White L", "price": 5500, "url": "https://www.ebay.co.uk/itm/256981340275" },
+        { "source": "Depop", "title": "kobe bryant lakers jersey 24 white adidas large", "price": 4500, "url": "https://www.depop.com/products/hoopsheritage-kobe-bryant-lakers-jersey-24/" },
+        { "source": "eBay", "title": "Kobe Bryant Lakers Home Jersey Adidas Swingman Size L 24", "price": 6000, "url": "https://www.ebay.co.uk/itm/316374920186" },
+        { "source": "Vestiaire Collective", "title": "Adidas White Polyester Top, L", "price": 7500, "url": "https://www.vestiairecollective.com/men-clothing/t-shirts/adidas/white-polyester-adidas-t-shirt-46730918.shtml" },
+        { "source": "eBay", "title": "Lakers Bryant 24 Adidas Jersey White Mens Large", "price": 5000, "url": "https://www.ebay.co.uk/itm/167152804463" }
+      ],
+      "description": {
+        "title": "adidas Lakers Bryant 24 Jersey, White, Size L",
+        "body": "Brought back from LA in 2009 and kept in a drawer ever since, so it's had very little wear.\n\nWhite home jersey with Bryant 24 on the back, size large. The numbers and lettering are intact with no peeling, and there's light pilling on the side panels. There's marker writing across the front number, shown up close in the photos.",
+        "proof_line": null
+      }
+    },
+    {
+      "key": "painted-denim",
+      "match": ["painted", "denim"],
+      "label": "Hand-painted denim jacket",
+      "brand": null,
+      "type": "jacket",
+      "type_label": "hand-painted denim jacket",
+      "size": "Fits M",
+      "brand_tier": "unknown",
+      "seller_story": "My sister painted it, she's at Central Saint Martins. All the lettering on the front is done by hand and it took her weeks. There's no label, it fits like a medium.",
+      "story_safe": "There's no label, it fits like a medium.",
+      "claim": "hand-painted by her sister",
+      "claim_noun": "the painted lettering",
+      "claim_line": "Seller says it's hand-painted by her sister. Close-up of the painted lettering included.",
+      "seller_ask": 8000,
+      "proof_request": "You said your sister painted it. Got any photos of her working on it, or of it half-finished?",
+      "search_query": "hand painted denim jacket vintage lettering",
+      "estimate_notes": ["Painted lettering on the front", "No label visible"],
+      "grade": "B",
+      "condition_notes": [
+        "Paint is intact, no cracking or flaking",
+        "Light fading on the elbows",
+        "No label or size tag"
+      ],
+      "special": null,
+      "photos": [
+        "https://images.unsplash.com/photo-1543076447-215ad9ba6923?w=900&q=80",
+        "https://placehold.co/900x1200/e9e4da/5b5346/jpeg?text=Painted+jacket+back",
+        "https://images.unsplash.com/photo-1548958142-5319c0ec17ab?w=900&q=80"
+      ],
+      "claim_proof": "https://images.unsplash.com/photo-1548958142-5319c0ec17ab?w=900&q=80",
+      "retake": null,
+      "comps": [
+        { "source": "Depop", "title": "hand painted denim jacket, one of a kind, size m", "price": 3000, "url": "https://www.depop.com/products/studiosofiaa-hand-painted-denim-jacket-one/" },
+        { "source": "eBay", "title": "Vintage Hand Painted Denim Jacket Custom Art Lettering Medium", "price": 3500, "url": "https://www.ebay.co.uk/itm/395921630487" },
+        { "source": "Depop", "title": "custom painted jean jacket vintage wash", "price": 2600, "url": "https://www.depop.com/products/reworkedbyjo-custom-painted-jean-jacket-vintage/" }
+      ],
+      "description": {
+        "title": "Hand-Painted Denim Jacket, One of a Kind, Fits M",
+        "body": "One of a kind: bold painted lettering across the front of a light-wash denim jacket. There's no label, and it fits like a medium.\n\nThe paint is intact with no cracking or flaking. There's light fading on the elbows, which suits it.",
+        "proof_line": null
+      }
+    },
+    {
+      "key": "wool-jumper",
+      "match": ["jumper"],
+      "label": "Teal wool jumper",
+      "brand": null,
+      "type": "hoodie",
+      "type_label": "knitted wool jumper",
+      "size": "Fits L",
+      "brand_tier": "unknown",
+      "seller_story": "Got it at a car boot sale. There's no label but it's proper wool, a bit scratchy. Fits a large.",
+      "story_safe": null,
+      "claim": null,
+      "claim_noun": null,
+      "claim_line": null,
+      "seller_ask": null,
+      "proof_request": null,
+      "search_query": "teal knitted wool jumper lace pattern no label",
+      "estimate_notes": ["No label visible", "Cuffs look a little stretched"],
+      "grade": "B",
+      "condition_notes": [
+        "No label or size tag",
+        "Cuffs slightly stretched",
+        "No holes or moth damage"
+      ],
+      "special": null,
+      "photos": [
+        "https://images.unsplash.com/photo-1536992266094-82847e1fd431?w=900&q=80",
+        "https://placehold.co/900x1200/e9e4da/5b5346/jpeg?text=Jumper+back",
+        "https://placehold.co/900x1200/e9e4da/5b5346/jpeg?text=No+label+inside+the+neck"
+      ],
+      "claim_proof": null,
+      "retake": null,
+      "comps": [],
+      "description": {
+        "title": "Teal Knitted Wool Jumper, Lace Pattern, Fits L",
+        "body": "A car boot find: a chunky teal wool jumper with a lace pattern running down the front. There's no label, and it fits like a large.\n\nIt's proper wool, so a little scratchy. No holes or moth damage, and the cuffs are slightly stretched.",
+        "proof_line": null
+      }
+    },
+    {
+      "key": "st-michael-dress",
+      "match": ["dress"],
+      "label": "St Michael floral midi dress",
+      "brand": "St Michael",
+      "type": "dress",
+      "type_label": "floral midi dress",
+      "size": "UK 12",
+      "brand_tier": "high street",
+      "seller_story": "It's old St Michael from M&S, size 12. It's missing the belt but otherwise it's perfect.",
+      "story_safe": null,
+      "claim": null,
+      "claim_noun": null,
+      "claim_line": null,
+      "seller_ask": null,
+      "proof_request": null,
+      "search_query": "St Michael vintage floral midi dress UK 12",
+      "estimate_notes": ["Belt missing"],
+      "grade": "B",
+      "condition_notes": [
+        "Original fabric belt missing, belt loops intact",
+        "Colours still bright, no fading or marks"
+      ],
+      "special": null,
+      "photos": [
+        "https://images.unsplash.com/photo-1682802739047-24fa5d983e71?w=900&q=80",
+        "https://placehold.co/900x1200/e9e4da/5b5346/jpeg?text=Dress+back",
+        "https://placehold.co/900x1200/e9e4da/5b5346/jpeg?text=St+Michael+label"
+      ],
+      "claim_proof": null,
+      "retake": null,
+      "comps": [
+        { "source": "eBay", "title": "Vintage St Michael Floral Midi Dress UK 12 M&S 90s", "price": 2400, "url": "https://www.ebay.co.uk/itm/226103948257" },
+        { "source": "Depop", "title": "vintage st michael floral midi dress size 12", "price": 2200, "url": "https://www.depop.com/products/nanaswardrobe-vintage-st-michael-floral-midi/" },
+        { "source": "eBay", "title": "St Michael Marks and Spencer Vintage Tea Dress Floral Size 12", "price": 2600, "url": "https://www.ebay.co.uk/itm/335740215896" },
+        { "source": "Depop", "title": "90s st michael ditsy floral dress midi uk12", "price": 1800, "url": "https://www.depop.com/products/goldiesgarms-90s-st-michael-ditsy-floral/" },
+        { "source": "ASOS Marketplace", "title": "Vintage St Michael floral midi dress", "price": 3000, "url": "https://marketplace.asos.com/listing/dresses/vintage-st-michael-floral-midi-dress/7402815" }
+      ],
+      "description": {
+        "title": "St Michael Floral Midi Dress, Vintage M&S, UK 12",
+        "body": "Old St Michael from M&S in a bright floral print, UK size 12. Apart from the missing belt, the seller says it's perfect.\n\nThe original fabric belt is gone, but the belt loops are intact. The colours are still bright with no fading or marks.",
+        "proof_line": null
+      }
+    }
+  ],
+  "sale": {
+    "item_key": "levis-trucker",
+    "buyer": "Grok Bot",
+    "first_offer": 2800,
+    "discount_code": "OFFLOAD-LEVI-35"
+  }
+}

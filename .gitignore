@@ -1,0 +1,22 @@
+# dependencies and builds
+node_modules/
+dist/
+.pnpm-store/
+*.tsbuildinfo
+
+# secrets: every .env file except the examples
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# local tooling
+.vercel/
+*.log
+
+# not part of the product: a stray Vite template and raw venue recordings
+stash-ui/
+sample resources/
+server/cache/photos/

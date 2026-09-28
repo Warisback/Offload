@@ -1,0 +1,23 @@
+{
+  "name": "offload-backend",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "offload backend: film your pile, the agent sells it.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.128.0",
+    "@supabase/supabase-js": "^2.117.2",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.4",
+    "express": "^5.2.1",
+    "sharp": "^0.35.4"
+  }
+}

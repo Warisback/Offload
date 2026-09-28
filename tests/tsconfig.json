@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "types": ["node"],
+    "allowJs": true,
+    "checkJs": false,
+    "jsx": "react-jsx"
+  },
+  "include": ["./*.ts", "../src/vite-env.d.ts"]
+}

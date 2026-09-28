@@ -1,0 +1,770 @@
+/* Landing page. Builds on the original classes in style.css (.hero, .steps, .split-card, .closing ...); everything new is .ld-. */
+
+.ld-page {
+  overflow-x: clip; /* floating cards and the marquee never cause sideways scroll */
+}
+
+/* Reading progress */
+.ld-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent);
+  transform-origin: 0 50%;
+  z-index: 60;
+  pointer-events: none;
+}
+
+/* Header: ButtonLink now sits in a .button-wrap, so the original ".header > .button" phone rules need restating here */
+.ld-page .header > .button-wrap {
+  flex-shrink: 0;
+}
+
+/* ---------- hero ---------- */
+.ld-hero {
+  position: relative;
+}
+.ld-title {
+  font-weight: 500;
+}
+/* Each word rises out of its own line: clip only the bottom edge so tight letter-spacing and the cap tops never get cut */
+.ld-mask {
+  display: inline-block;
+  clip-path: inset(-0.4em -0.3em 0 -0.3em);
+}
+.ld-word {
+  display: inline-block;
+}
+.ld-title .life svg path {
+  fill: none;
+}
+
+.ld-link-wrap {
+  display: inline-flex;
+}
+.ld-play {
+  position: relative;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.ld-play::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  animation: ld-ring 2.6s var(--ease) infinite;
+  pointer-events: none;
+}
+.text-link:hover .ld-play {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+/* Live proof from the ledger. The slot keeps its height so the hero never jumps when the first poll lands. */
+.ld-proof-slot {
+  min-height: 40px;
+  margin-top: 22px;
+}
+.ld-proof {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  padding: 8px 14px 8px 12px;
+  border-radius: var(--pill);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  font-size: 13px;
+  color: var(--muted);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.ld-proof strong {
+  display: inline-block; /* so the "a sale landed" beat can scale it */
+  color: var(--ink);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.ld-proof:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow);
+}
+.ld-proof > svg {
+  flex-shrink: 0;
+  color: var(--ink);
+}
+.ld-proof-dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--success);
+}
+.ld-proof-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--success);
+  animation: ld-ring 2s var(--ease) infinite;
+}
+.ld-hero-bottom {
+  margin-top: 34px;
+}
+
+/* Hero art. The orb, photo and cards keep the original composition; wrappers carry position + parallax, inner layers carry the float. */
+.ld-orb {
+  position: absolute;
+  top: 7%;
+  left: 5%;
+  width: 93%;
+  height: 87%;
+}
+.ld-orb > span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 28%, #f7f8ff 0%, var(--accent-soft) 55%, #e2e6ff 100%);
+}
+.ld-hero .hero-photo {
+  box-shadow: var(--shadow-lg);
+  will-change: transform;
+}
+.ld-hero .hero-photo > img {
+  will-change: transform;
+}
+
+.ld-float {
+  position: absolute;
+  z-index: 4;
+}
+.ld-float-est {
+  left: 0;
+  top: 31%;
+}
+.ld-float-sold {
+  right: 0;
+  top: 60%;
+}
+.ld-card {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  background: var(--paper);
+  border: 1px solid #efefea;
+  border-radius: 18px;
+  box-shadow: var(--shadow-lg);
+}
+.ld-card small,
+.ld-card .ld-card-sub {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+}
+.ld-card strong {
+  display: block;
+  font-size: 30px;
+  letter-spacing: -0.04em;
+  line-height: 1.3;
+  font-variant-numeric: tabular-nums;
+}
+/* The slow float runs on the compositor via the individual `translate` property, so it never fights the
+   motion wrappers (entrance + parallax) or the tilt, and the global reduced-motion rule switches it off. */
+.ld-card-est {
+  padding: 17px 18px;
+  rotate: -4deg;
+  animation: ld-float-a 6s ease-in-out infinite;
+}
+.ld-card-sold {
+  padding: 16px 18px;
+  animation: ld-float-b 7s ease-in-out -2.6s infinite;
+}
+.ld-card-sold strong {
+  font-size: 14px;
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+.ld-card-sold .sold-icon {
+  flex-shrink: 0;
+  color: var(--green);
+}
+.ld-card-sold > svg {
+  flex-shrink: 0;
+}
+.ld-spin {
+  display: inline-block;
+  animation: ld-spin 14s linear infinite;
+}
+
+/* The scan line sweeping the estimate icon: "we're reading your pile" */
+.ld-scan {
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.ld-scan::after {
+  content: '';
+  position: absolute;
+  left: 9px;
+  right: 9px;
+  top: 50%;
+  height: 2px;
+  margin-top: -1px;
+  border-radius: 2px;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  animation: ld-scan 2.4s ease-in-out infinite;
+}
+
+/* The round stamp */
+.ld-stamp-pos {
+  position: absolute;
+  left: 3%;
+  bottom: 8%;
+  width: 113px;
+  height: 113px;
+  z-index: 3;
+}
+.ld-stamp {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--ink);
+  box-shadow: 0 18px 40px #7888ef59;
+}
+.ld-stamp-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  animation: ld-spin 28s linear infinite;
+}
+.ld-stamp-ring text {
+  font-family: var(--font);
+  font-size: 9.4px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  fill: var(--ink);
+}
+.ld-stamp-arrow {
+  position: relative;
+}
+
+/* ---------- promise strip ---------- */
+.ld-strip {
+  background: var(--accent-soft);
+  padding: 24px 0;
+  font-size: clamp(15px, 1.5vw, 21px);
+  letter-spacing: -0.025em;
+  font-weight: 500;
+  overflow: hidden;
+}
+.ld-strip-viewport {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+.ld-strip-track {
+  --ld-gap: clamp(20px, 2.6vw, 38px);
+  display: flex;
+  width: max-content;
+  animation: ld-marquee 44s linear infinite;
+}
+@media (hover: hover) {
+  .ld-strip:hover .ld-strip-track {
+    animation-play-state: paused; /* hover only: on touch a tap would freeze it until the next tap elsewhere */
+  }
+}
+.ld-strip-group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: var(--ld-gap);
+  padding-right: var(--ld-gap); /* equal to the gap, so moving exactly one group is seamless */
+  white-space: nowrap;
+}
+.ld-strip-arrow {
+  color: var(--accent);
+  font-size: 1.45em;
+  line-height: 1;
+}
+.ld-strip-star {
+  color: var(--accent);
+  font-size: 2em;
+  line-height: 1;
+}
+/* Reduced motion: the original still row */
+.ld-strip-static {
+  padding: 25px var(--page);
+}
+.ld-strip-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px 20px;
+}
+
+/* Headings never leave a lonely last word ("cut.", "happen."): each designed line is its own block and balances
+   on its own when it has to wrap on a phone. */
+.ld-line {
+  display: block;
+  text-wrap: balance;
+}
+
+/* ---------- how it works ---------- */
+.ld-page .steps article {
+  min-width: 0;
+}
+.ld-rec {
+  position: relative;
+}
+.ld-rec::after {
+  content: '';
+  position: absolute;
+  inset: -9px;
+  border-radius: 50%;
+  border: 2px solid #eb695c;
+  animation: ld-ring 1.8s var(--ease) infinite;
+}
+.ld-cam-prompt {
+  position: absolute;
+  top: 24px;
+  right: 16px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: min(250px, calc(100% - 70px));
+  padding: 10px 14px;
+  border-radius: 14px 14px 4px 14px;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--ink);
+}
+.ld-cam-prompt > svg {
+  flex-shrink: 0;
+  color: var(--accent);
+}
+.ld-cam-text {
+  display: grid;
+  min-width: 0;
+}
+.ld-cam-text > span {
+  grid-area: 1 / 1;
+}
+.ld-cam-sizer {
+  visibility: hidden;
+}
+.ld-truck > svg {
+  animation: ld-idle 0.9s ease-in-out infinite;
+}
+.ld-shield {
+  display: grid;
+  place-items: center;
+  color: var(--green);
+  flex-shrink: 0;
+}
+/* A dashed route under the pickup card with a dot heading to your door */
+.ld-route {
+  position: absolute;
+  left: 14%;
+  right: 14%;
+  bottom: 30px;
+  height: 10px;
+  background: repeating-linear-gradient(90deg, #17191833 0 8px, transparent 8px 16px) center / 100% 2px no-repeat;
+}
+.ld-route > span {
+  position: absolute;
+  inset: 0;
+  animation: ld-route 3.6s var(--ease) infinite;
+}
+.ld-route > span::after {
+  content: '';
+  position: absolute;
+  right: -5px;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ink);
+  box-shadow: 0 0 0 4px #ffffff99;
+}
+
+/* The payout figure stays on one line ("+ £26.60"), whatever the column width */
+.ld-page .payout-mini strong > span {
+  white-space: nowrap;
+}
+
+/* ---------- your cut ---------- */
+.ld-split-card {
+  box-shadow: 0 0 0 1px var(--line) inset;
+}
+.ld-split-card .seller-cut strong {
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.ld-split-card .split-details strong {
+  font-variant-numeric: tabular-nums;
+}
+.ld-split-card .seller-cut strong > span,
+.ld-split-card .split-details strong > span {
+  display: inline; /* CountUp's span must not pick up the ".seller-cut span:last-child" / ".split-details span" label styles */
+  font-size: inherit;
+  color: inherit;
+}
+.ld-split-card .split-bar i {
+  width: auto;
+  min-width: 0;
+}
+
+/* ---------- closing ---------- */
+.ld-closing h2 {
+  position: relative;
+}
+.ld-closing-arrow {
+  position: absolute;
+  top: 30%;
+  margin-left: 30px;
+  width: 70px;
+  height: 70px;
+  animation: ld-nudge 2.4s ease-in-out infinite;
+}
+.ld-page .closing h2 .ld-closing-arrow svg {
+  position: static;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------- motion keyframes ---------- */
+@keyframes ld-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+@keyframes ld-float-a {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -10px;
+  }
+}
+@keyframes ld-float-b {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 8px;
+  }
+}
+@keyframes ld-nudge {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 7px -7px;
+  }
+}
+@keyframes ld-ring {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+@keyframes ld-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes ld-scan {
+  0%,
+  100% {
+    transform: translateY(-11px);
+  }
+  50% {
+    transform: translateY(11px);
+  }
+}
+@keyframes ld-idle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-1.5px);
+  }
+}
+@keyframes ld-route {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  12%,
+  82% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+}
+
+/* ---------- responsive ---------- */
+@media (min-width: 1600px) {
+  .ld-card-est strong {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .ld-hero .ld-title {
+    font-size: clamp(44px, 6.3vw, 60px);
+  }
+  .ld-float-est {
+    left: -8px;
+    top: 8%;
+  }
+  .ld-card-est {
+    padding: 13px;
+  }
+  .ld-card strong {
+    font-size: 24px;
+  }
+  .ld-card-sold strong {
+    font-size: 13px;
+  }
+  /* The art column is narrow here: the stamp moves up to the photo's left edge so the caption stays readable */
+  .ld-stamp-pos {
+    left: 0;
+    top: 42%;
+    bottom: auto;
+    width: 100px;
+    height: 100px;
+  }
+  .ld-hero .photo-top {
+    top: 27%;
+  }
+  .ld-page .desktop-break {
+    display: none;
+  }
+  .ld-proof-sold {
+    display: none;
+  }
+  .ld-cam-prompt {
+    font-size: 11px;
+    padding: 9px 12px;
+    right: 12px;
+  }
+}
+
+/* Tablet: three narrow step cards. Size the payout so "+ £26.60" and its arrow fit inside the card. */
+@media (min-width: 768px) and (max-width: 1100px) {
+  .ld-page .payout-mini {
+    padding: 16px 14px;
+  }
+  .ld-page .payout-mini strong {
+    font-size: clamp(27px, 3.3vw, 36px);
+  }
+  .ld-page .payout-mini strong > svg {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+  }
+  /* The photo is narrower here: keep the caption on its two designed lines */
+  .ld-hero .photo-caption {
+    font-size: 21px;
+  }
+  /* ...and the tilted photo's corner reaches the vertical label: move the label into the gutter */
+  .ld-hero .art-label {
+    right: -18px;
+  }
+  .ld-proof {
+    font-size: 12px;
+  }
+}
+.ld-proof-demo {
+  white-space: nowrap;
+}
+
+/* Small tablets: the nav links and the CTA share one row without the links wrapping onto two lines */
+@media (min-width: 768px) and (max-width: 960px) {
+  .ld-page .header {
+    gap: 16px;
+  }
+  .ld-page .header nav {
+    gap: 18px;
+  }
+  .ld-page .header nav a {
+    white-space: nowrap;
+  }
+  .ld-page .header .logo {
+    width: 120px;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Header: logo, a compact CTA and the menu all fit at 375px */
+  .ld-page .header {
+    gap: 12px;
+  }
+  .ld-page .header > .button-wrap {
+    margin-left: auto;
+  }
+  .ld-page .header > .button-wrap .button {
+    padding: 11px 15px;
+    font-size: 12px;
+    gap: 10px;
+    min-height: 44px;
+  }
+  .ld-page .header .menu {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    margin-right: -10px;
+  }
+
+  .ld-hero .ld-title {
+    font-size: clamp(44px, 12.4vw, 64px);
+  }
+  .ld-page .hero-actions .button-wrap {
+    flex: 1 1 100%;
+  }
+  .ld-page .hero-actions .button {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .ld-page .hero-actions .text-link {
+    min-height: 44px;
+  }
+  .ld-proof-slot {
+    min-height: 44px;
+    margin-top: 18px;
+  }
+  .ld-proof {
+    min-height: 44px;
+    font-size: 12px;
+  }
+
+  .ld-float-est {
+    left: 0;
+    top: 4%;
+  }
+  .ld-card-est {
+    gap: 9px;
+    padding: 12px 13px;
+  }
+  .ld-card small,
+  .ld-card .ld-card-sub {
+    font-size: 10px;
+  }
+  .ld-card-est strong {
+    font-size: 25px;
+  }
+  .ld-float-sold {
+    right: -4px;
+    top: 57%;
+  }
+  .ld-hero .photo-top {
+    top: 28%;
+  }
+  .ld-hero .photo-caption {
+    font-size: 20px;
+  }
+  .ld-card-sold {
+    padding: 12px 13px;
+    gap: 10px;
+  }
+  .ld-card-sold strong {
+    font-size: 12px;
+  }
+  .ld-stamp-pos {
+    left: -2%;
+    top: auto;
+    bottom: 2%;
+    width: 84px;
+    height: 84px;
+  }
+  .ld-stamp-arrow {
+    width: 24px;
+    height: 24px;
+  }
+  .ld-stamp-ring text {
+    font-size: 9.8px;
+  }
+
+  .ld-strip {
+    padding: 20px 0;
+  }
+  .ld-strip-track {
+    animation-duration: 34s;
+  }
+  .ld-strip-row {
+    justify-content: center;
+    font-size: 13px;
+  }
+  .ld-strip-static .ld-strip-star {
+    display: none;
+  }
+
+  .ld-cam-prompt {
+    font-size: 12px;
+    top: 20px;
+  }
+  .ld-closing-arrow {
+    display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .ld-page .header .logo {
+    width: 112px;
+  }
+}
+
+/* Reduced motion: style.css already stops every animation and transform; drop the pieces that only make sense moving. */
+@media (prefers-reduced-motion: reduce) {
+  .ld-card,
+  .ld-stamp-ring,
+  .ld-closing-arrow {
+    animation: none;
+    translate: none;
+  }
+  .ld-progress,
+  .ld-play::after,
+  .ld-rec::after,
+  .ld-proof-dot::after,
+  .ld-scan::after,
+  .ld-route > span {
+    display: none;
+  }
+  .ld-strip-track {
+    animation: none;
+  }
+}

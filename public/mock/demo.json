@@ -1,0 +1,213 @@
+{
+  "seller_name": "Maya",
+  "address": "18 Lauriston Road, Hackney, London E9 7HA",
+  "runner_name": "Sam",
+  "transcript": "And this one is my favorite. I got it from a UK artist and it's very much exclusive and hard to get. This patch jacket, I hand sewed it. Every single patch here is hand-sewn, and I'm looking to get around £180 from this. This is a jacket I'm looking to sell. It's a Ralph Lauren I bought recently and I am trying to clear for my cupboard.",
+  "items": [
+    {
+      "key": "crochet-denim",
+      "match": [
+        "crochet"
+      ],
+      "label": "Crochet granny-square denim jacket",
+      "brand": null,
+      "type": "jacket",
+      "type_label": "crochet denim jacket",
+      "size": null,
+      "brand_tier": "unknown",
+      "seller_story": "I got it from a UK artist and it's very much exclusive and hard to get.",
+      "story_safe": null,
+      "claim": null,
+      "claim_noun": null,
+      "claim_line": null,
+      "seller_ask": null,
+      "proof_request": null,
+      "search_query": "crochet denim jacket patchwork UK artist",
+      "estimate_notes": [],
+      "grade": "B",
+      "condition_notes": [],
+      "special": "exclusive",
+      "photos": [
+        "https://rokwsgbwvsjkdeffaqjr.supabase.co/storage/v1/object/public/photos/demo/crochet-denim/01.jpg",
+        "https://rokwsgbwvsjkdeffaqjr.supabase.co/storage/v1/object/public/photos/demo/crochet-denim/02.jpg",
+        "https://rokwsgbwvsjkdeffaqjr.supabase.co/storage/v1/object/public/photos/demo/crochet-denim/03.jpg",
+        "https://rokwsgbwvsjkdeffaqjr.supabase.co/storage/v1/object/public/photos/demo/crochet-denim/04.jpg",
+        "https://rokwsgbwvsjkdeffaqjr.supabase.co/storage/v1/object/public/photos/demo/crochet-denim/05.jpg"
+      ],
+      "claim_proof": null,
+      "retake": null,
+      "comps": [
+        {
+          "source": "eBay",
+          "title": "PLUS SIZED MAGNOLIA ROSE DENIM JACKET ...",
+          "price": 7951,
+          "url": "https://www.ebay.co.uk/itm/183781461349"
+        },
+        {
+          "source": "eBay",
+          "title": "Art to Wear Festival Whimsy Goth Jean Jacket embordered ...",
+          "price": 7246,
+          "url": "https://www.ebay.co.uk/itm/256762220289"
+        }
+      ],
+      "description": {
+        "title": "Crochet Patchwork Denim Jacket",
+        "body": "I got it from a UK artist and it’s very much exclusive and hard to get.\n\nCondition is B, so it’s lightly worn with no noted flaws. In everyday terms, that means it’s in good used condition with only gentle signs of wear.\n\nIt’s a crochet patchwork denim jacket. Size is not known.",
+        "proof_line": null
+      }
+    },
+    {
+      "key": "patch-jacket",
+      "match": [
+        "patch jacket"
+      ],
+      "label": "Hand-sewn patch jacket",
+      "brand": null,
+      "type": "jacket",
+      "type_label": "patch jacket",
+      "size": null,
+      "brand_tier": "unknown",
+      "seller_story": "I hand sewed it. Every single patch here is hand-sewn.",
+      "story_safe": "I hand sewed it.",
+      "claim": "hand-sewn by the seller",
+      "claim_noun": "the hand-sewn patches",
+      "claim_line": "Seller says it's hand-sewn by the seller. Close-up of the hand-sewn patches included.",
+      "seller_ask": 18000,
+      "proof_request": "You said it's hand-sewn by you. Do you have any photos of you making it or of the jacket before the patches were added?",
+      "search_query": "patch jacket hand-sewn",
+      "estimate_notes": [],
+      "grade": "B",
+      "condition_notes": [],
+      "special": null,
+      "photos": [
+        "https://rokwsgbwvsjkdeffaqjr.supabase.co/storage/v1/object/public/photos/demo/patch-jacket/01.jpg",
+        "https://rokwsgbwvsjkdeffaqjr.supabase.co/storage/v1/object/public/photos/demo/patch-jacket/02.jpg",
+        "https://rokwsgbwvsjkdeffaqjr.supabase.co/storage/v1/object/public/photos/demo/patch-jacket/03.jpg",
+        "https://rokwsgbwvsjkdeffaqjr.supabase.co/storage/v1/object/public/photos/demo/patch-jacket/04.jpg"
+      ],
+      "claim_proof": null,
+      "retake": {
+        "photo_requests": [
+          "Get a close-up of the stitching on one of the patches, in good light"
+        ],
+        "request_summary": "a close-up of the hand stitching",
+        "photos_after": [
+          "https://rokwsgbwvsjkdeffaqjr.supabase.co/storage/v1/object/public/photos/demo/patch-jacket/retake-closeup.jpg"
+        ],
+        "claim_proof": "https://rokwsgbwvsjkdeffaqjr.supabase.co/storage/v1/object/public/photos/demo/patch-jacket/retake-closeup.jpg"
+      },
+      "comps": [],
+      "description": {
+        "title": "Patch Jacket",
+        "body": "I hand sewed it.\n\nIt’s in B condition, so it’s been lightly worn with no noted flaws. I’d say it’s in everyday good used condition.\n\nSize isn’t known.",
+        "proof_line": null
+      }
+    },
+    {
+      "key": "ralph-bomber",
+      "match": [
+        "ralph"
+      ],
+      "label": "Ralph Lauren check harrington jacket",
+      "brand": "Ralph Lauren",
+      "type": "jacket",
+      "type_label": "check harrington jacket",
+      "size": null,
+      "brand_tier": "premium",
+      "seller_story": "I bought it recently and I’m trying to clear my cupboard.",
+      "story_safe": null,
+      "claim": null,
+      "claim_noun": null,
+      "claim_line": null,
+      "seller_ask": null,
+      "proof_request": null,
+      "search_query": "Ralph Lauren check harrington jacket",
+      "estimate_notes": [],
+      "grade": "A",
+      "condition_notes": [],
+      "special": null,
+      "photos": [
+        "https://rokwsgbwvsjkdeffaqjr.supabase.co/storage/v1/object/public/photos/demo/ralph-bomber/01.jpg",
+        "https://rokwsgbwvsjkdeffaqjr.supabase.co/storage/v1/object/public/photos/demo/ralph-bomber/02.jpg",
+        "https://rokwsgbwvsjkdeffaqjr.supabase.co/storage/v1/object/public/photos/demo/ralph-bomber/03.jpg",
+        "https://rokwsgbwvsjkdeffaqjr.supabase.co/storage/v1/object/public/photos/demo/ralph-bomber/04.jpg",
+        "https://rokwsgbwvsjkdeffaqjr.supabase.co/storage/v1/object/public/photos/demo/ralph-bomber/05.jpg"
+      ],
+      "claim_proof": null,
+      "retake": null,
+      "comps": [
+        {
+          "source": "Vestiaire Collective",
+          "title": "Ralph Lauren Beige Cotton Harrington Jacket Men's L",
+          "price": 6630,
+          "url": "https://us.vestiairecollective.com/men-clothing/jackets/ralph-lauren/beige-cotton-ralph-lauren-jacket-55663169.shtml"
+        },
+        {
+          "source": "Depop",
+          "title": "Polo Ralph Lauren Reworked Harrington...",
+          "price": 3900,
+          "url": "https://www.depop.com/products/simplyreworked-vintage-polo-ralph-lauren-harrington-e707?country_code=GB"
+        }
+      ],
+      "description": {
+        "title": "Ralph Lauren Check Harrington Jacket",
+        "body": "I bought it recently and I’m trying to clear my cupboard.\n\nIt’s in A condition, which means like new, with no visible flaws. Size isn’t known.\n\nA clean Ralph Lauren check harrington jacket in great condition.",
+        "proof_line": null
+      }
+    },
+    {
+      "key": "adidas-jeans",
+      "match": [
+        "jeans"
+      ],
+      "label": "Reworked Adidas panel jeans",
+      "brand": null,
+      "type": "jeans",
+      "type_label": "reworked patchwork jeans",
+      "size": null,
+      "brand_tier": "unknown",
+      "seller_story": null,
+      "story_safe": null,
+      "claim": null,
+      "claim_noun": null,
+      "claim_line": null,
+      "seller_ask": null,
+      "proof_request": null,
+      "search_query": "reworked adidas patchwork jeans",
+      "estimate_notes": [],
+      "grade": "B",
+      "condition_notes": [],
+      "special": null,
+      "photos": [
+        "https://rokwsgbwvsjkdeffaqjr.supabase.co/storage/v1/object/public/photos/demo/adidas-jeans/01.jpg"
+      ],
+      "claim_proof": null,
+      "retake": null,
+      "comps": [
+        {
+          "source": "eBay",
+          "title": "Custom Reworked Patchwork Jeans with CK Panels – Size 36",
+          "price": 4077,
+          "url": "https://www.ebay.co.uk/itm/358883048957"
+        },
+        {
+          "source": "eBay",
+          "title": "Carhartt Baggy Carpenter Jeans Reworked Men's W32 L30",
+          "price": 11000,
+          "url": "https://www.ebay.co.uk/itm/407038845448"
+        }
+      ],
+      "description": {
+        "title": "Reworked Panel Jeans",
+        "body": "Reworked panel jeans with an Adidas-style look.\n\nCondition is B, so they’re lightly worn with no noted flaws. Size isn’t known.",
+        "proof_line": null
+      }
+    }
+  ],
+  "sale": {
+    "item_key": "ralph-bomber",
+    "buyer": "Grok Bot",
+    "first_offer": 3000,
+    "discount_code": "OFFLOAD-RL-30"
+  }
+}

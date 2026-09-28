@@ -1,0 +1,1703 @@
+/* /live, the projector screen. Reads from the back of a room: big type, high contrast, calm.
+   Every class is .lv- prefixed; shared classes (.chip, .button, .text-link, .eyebrow, .sr-only) are reused as-is.
+   Motion lives in the components (transform/opacity only); the few CSS animations here are loops and one-shot glows.
+   Desktop budget (1440x900 and up): title row + the negotiation panel fit above the sticky money banner; the feed sticks
+   on the left so the newest events never scroll away; the rail of listings sits below the negotiation. */
+
+.lv-page {
+  --lv-gap: 24px;
+  --lv-panel-pad: 28px;
+  --lv-stick: 16px; /* sticky feed offset from the top */
+  --lv-banner-space: 190px; /* sticky banner + its gap, kept clear under the sticky feed */
+}
+/* Colour tokens also live on the overlays: they're portalled to <body>, outside .lv-page. */
+.lv-page,
+.lv-overlay {
+  --lv-on-accent-soft: #171918d9; /* body text on periwinkle (85% ink, >= 4.5:1) */
+  --lv-ours: #ffffff66; /* offload's segment on periwinkle */
+}
+
+/* ---------- page frame ---------- */
+.lv-page .workspace {
+  padding-top: 28px;
+}
+.lv-page .workspace-title {
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px 32px;
+  margin-bottom: 24px;
+}
+.lv-page .workspace-title > div:first-child {
+  flex: 1 1 420px; /* at 1024px the title and the QR card still share one row */
+  min-width: 0;
+}
+.lv-page .workspace-title h1 {
+  margin: 12px 0 8px;
+  font-size: clamp(32px, 3vw, 50px);
+  letter-spacing: -0.058em;
+}
+.lv-accent {
+  color: var(--accent);
+}
+.lv-page .workspace-title > div:first-child > p {
+  font-size: 15px;
+}
+
+.lv-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--lv-gap);
+  align-items: start;
+}
+.lv-right {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lv-gap);
+  min-width: 0;
+}
+
+.lv-panel {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--lv-panel-pad);
+  min-width: 0;
+}
+.lv-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px 16px;
+  margin-bottom: 18px;
+}
+.lv-head > div:first-child {
+  flex: 1 1 260px; /* the negotiation picks drop under the title only when there's no room beside it */
+  min-width: 0;
+}
+.lv-feed .lv-head {
+  flex-wrap: nowrap;
+}
+.lv-feed .lv-head > div:first-child {
+  flex-basis: auto;
+}
+.lv-head h2 {
+  margin: 0;
+  font-size: clamp(22px, 1.7vw, 28px);
+  font-weight: 550;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+}
+.lv-head-sub {
+  margin: 4px 0 0;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.lv-live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  padding: 7px 12px;
+  border-radius: var(--pill);
+  background: var(--mint);
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+.lv-live-dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.lv-live-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: currentColor;
+  animation: lv-ping 1.9s var(--ease) infinite;
+}
+.lv-live-pill.is-off {
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+.lv-live-pill.is-off .lv-live-dot::after {
+  animation: none;
+}
+@keyframes lv-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  80%,
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
+.lv-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 32px 28px;
+  border-radius: 20px;
+  background: var(--canvas);
+  color: var(--muted);
+}
+.lv-empty > svg {
+  color: var(--accent);
+}
+.lv-empty strong {
+  color: var(--ink);
+  font-size: 22px;
+  font-weight: 550;
+  letter-spacing: -0.025em;
+}
+.lv-empty p {
+  margin: 0;
+  max-width: 44ch;
+  font-size: 15px;
+  line-height: 1.55;
+}
+.lv-empty-tight {
+  padding: 26px 24px;
+}
+.lv-ph {
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  background: var(--canvas);
+}
+
+/* ---------- feed (left; sticks on desktop so the newest events stay in view) ---------- */
+.lv-feed {
+  position: sticky;
+  top: var(--lv-stick);
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - var(--lv-stick) - var(--lv-banner-space));
+  height: calc(100dvh - var(--lv-stick) - var(--lv-banner-space));
+  min-height: 460px;
+  padding-bottom: 0;
+}
+.lv-feed-body {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  margin: 0 -12px;
+}
+.lv-feed-body > .state-box,
+.lv-feed-body > .lv-empty {
+  margin: 0 12px var(--lv-panel-pad);
+}
+/* The list scrolls inside the panel and fades out at the bottom. */
+.lv-feed-scroll {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0 0 96px;
+  scrollbar-width: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 calc(100% - 150px), transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0, #000 calc(100% - 150px), transparent 100%);
+}
+.lv-feed-scroll::-webkit-scrollbar {
+  display: none;
+}
+.lv-feed-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.lv-event {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  padding: 20px 12px;
+  border-top: 1px solid var(--line);
+}
+.lv-event:first-child {
+  border-top-color: transparent;
+}
+.lv-event > * {
+  position: relative;
+}
+/* One-shot highlight for events that arrive live (opacity only). */
+.lv-event::before {
+  content: '';
+  position: absolute;
+  inset: 4px 0;
+  border-radius: 18px;
+  background: linear-gradient(90deg, var(--accent-soft), #edf0ff66);
+  box-shadow: inset 3px 0 0 var(--accent);
+  opacity: 0;
+  pointer-events: none;
+}
+.lv-event.is-fresh::before {
+  animation: lv-glow 3.2s var(--ease) both;
+}
+@keyframes lv-glow {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.lv-actor {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 15px;
+  color: var(--ink);
+}
+.lv-tone-agent {
+  background: var(--accent-soft);
+  color: var(--accent-deep);
+}
+.lv-tone-seller {
+  background: var(--peach);
+  color: #7a4a2c;
+}
+.lv-tone-runner {
+  background: var(--mint);
+  color: var(--green);
+}
+.lv-tone-buyer {
+  background: var(--canvas);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.lv-event-body {
+  min-width: 0;
+  flex: 1;
+}
+.lv-event-meta {
+  display: block;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+}
+.lv-event-meta time {
+  font-variant-numeric: tabular-nums;
+}
+.lv-event-text {
+  margin: 5px 0 0;
+  color: var(--ink);
+  font-size: clamp(17px, 1.32vw, 22px);
+  font-weight: 450;
+  line-height: 1.38;
+  letter-spacing: -0.015em;
+  overflow-wrap: anywhere;
+}
+.lv-event-money {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  color: var(--ink);
+  font-size: clamp(38px, 3.4vw, 58px);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.lv-event-money svg {
+  width: 0.62em;
+  height: 0.62em;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+/* ---------- negotiation (right, top) ---------- */
+.lv-neg {
+  display: flex;
+  flex-direction: column;
+  scroll-margin-top: var(--lv-stick);
+}
+.lv-neg-picks {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+  padding: 4px;
+}
+.lv-neg-pick {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 14px;
+}
+.lv-neg-pick-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 13px;
+  object-fit: cover;
+  opacity: 0.55;
+  transition:
+    opacity 0.25s var(--ease),
+    transform 0.35s var(--ease);
+}
+.lv-neg-pick:hover .lv-neg-pick-img {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+.lv-neg-pick[aria-pressed='true'] .lv-neg-pick-img {
+  opacity: 1;
+  transform: none;
+}
+.lv-neg-pick-ring {
+  position: absolute;
+  inset: -4px;
+  border: 2px solid var(--accent);
+  border-radius: 17px;
+  pointer-events: none;
+}
+
+.lv-neg-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 18px;
+}
+.lv-neg-product {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+.lv-neg-photo {
+  display: block;
+  flex-shrink: 0;
+  width: 72px;
+  height: 84px;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 14px;
+  background: var(--canvas);
+}
+.lv-neg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s var(--ease);
+}
+.lv-neg-photo:hover .lv-neg-img,
+.lv-neg-photo:focus-visible .lv-neg-img {
+  transform: scale(1.05);
+}
+.lv-neg-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+  min-width: 0;
+}
+.lv-neg-chip {
+  margin-bottom: 8px;
+}
+.lv-neg-info strong {
+  display: block;
+  max-width: 100%;
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 550;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+.lv-neg-info p {
+  margin: 3px 0 2px;
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.4;
+}
+.lv-neg-info small {
+  color: var(--muted);
+  font-size: 13px;
+}
+.lv-neg-link {
+  min-height: 36px;
+  margin-top: 4px;
+  color: var(--accent-deep);
+}
+
+/* The chat scrolls inside the panel so the panel never grows under the money banner; the newest bubble stays in view. */
+.lv-chat {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 160px;
+  max-height: clamp(230px, 32vh, 400px);
+  padding: 4px 2px 6px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+.lv-chat::-webkit-scrollbar {
+  display: none;
+}
+.lv-chat.is-scrolled {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 56px);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 56px);
+}
+.lv-bubble {
+  position: relative;
+  flex-shrink: 0;
+  max-width: min(86%, 34em);
+  padding: 14px 18px 12px;
+  border-radius: 22px;
+  color: var(--ink);
+  font-size: clamp(16px, 1.25vw, 20px);
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+.lv-bubble.buyer,
+.lv-typing.buyer {
+  align-self: flex-start;
+  background: var(--canvas);
+  border-bottom-left-radius: 6px;
+  transform-origin: 0% 100%;
+}
+.lv-bubble.agent,
+.lv-typing.agent {
+  align-self: flex-end;
+  background: var(--accent-soft);
+  border-bottom-right-radius: 6px;
+  transform-origin: 100% 100%;
+}
+.lv-bubble.deal {
+  padding-left: 54px;
+  background: var(--mint);
+}
+.lv-bubble.no {
+  background: var(--peach);
+}
+.lv-bubble-text {
+  display: block;
+}
+.lv-bubble small {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0;
+}
+.lv-deal-check {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--green);
+  color: #fff;
+}
+.lv-code {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.8em;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  overflow-wrap: anywhere;
+}
+.lv-typing {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 5px;
+  padding: 17px 18px;
+  border-radius: 22px;
+}
+.lv-typing i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--muted);
+  animation: lv-bounce 1.1s ease-in-out infinite;
+}
+.lv-typing i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.lv-typing i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes lv-bounce {
+  0%,
+  80%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  40% {
+    transform: translateY(-5px);
+    opacity: 1;
+  }
+}
+
+/* Wide right column: the item stands on the left like a product card, the chat runs beside it. */
+@media (min-width: 1280px) {
+  .lv-neg-body {
+    grid-template-columns: clamp(170px, 26%, 230px) minmax(0, 1fr);
+    gap: 28px;
+    align-items: start;
+  }
+  .lv-neg-product {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    padding: 0;
+    border: 0;
+  }
+  .lv-neg-photo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 5 / 4;
+    border-radius: 18px;
+  }
+  .lv-neg-chip {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+    margin: 0;
+  }
+  .lv-neg-chip .chip {
+    box-shadow: var(--shadow-sm);
+  }
+  .lv-neg-info strong {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  .lv-chat {
+    min-height: 220px;
+  }
+}
+
+/* ---------- listings (right, below the haggle) ---------- */
+.lv-listings {
+  border-color: transparent;
+  background: var(--canvas);
+}
+.lv-listings .lv-empty {
+  background: var(--paper);
+}
+.lv-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px 16px;
+}
+.lv-card {
+  position: relative;
+  min-width: 0;
+}
+.lv-card-ring {
+  position: absolute;
+  inset: -7px;
+  z-index: 2;
+  border: 2px solid var(--accent);
+  border-radius: 24px;
+  pointer-events: none;
+}
+.lv-card-photo {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3.2;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 18px;
+  background: var(--paper);
+}
+.lv-card-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition:
+    transform 0.8s var(--ease),
+    opacity 0.5s var(--ease);
+}
+.lv-card-photo:hover img,
+.lv-card-photo:focus-visible img {
+  transform: scale(1.045);
+}
+.lv-card.is-sold .lv-card-photo img {
+  opacity: 0.6;
+}
+.lv-card-ph {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  color: var(--muted);
+}
+.lv-card-status {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1;
+}
+.lv-card-status .chip {
+  box-shadow: var(--shadow-sm);
+}
+.lv-card-status .chip:not(.green):not(.accent) {
+  background: var(--paper);
+}
+.lv-card-arrow {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--paper);
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity 0.25s var(--ease),
+    transform 0.25s var(--ease);
+}
+.lv-card-photo:hover .lv-card-arrow,
+.lv-card-photo:focus-visible .lv-card-arrow {
+  opacity: 1;
+  transform: none;
+}
+.lv-stamp-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+.lv-stamp {
+  display: block;
+  padding: 6px 16px 5px 19px;
+  border: 3px solid var(--accent-deep);
+  border-radius: 12px;
+  background: #ffffffe0;
+  color: var(--accent-deep);
+  font-size: clamp(20px, 1.9vw, 30px);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  line-height: 1.1;
+  text-transform: uppercase;
+  box-shadow: 0 12px 30px #4b58c433;
+}
+.lv-card-info {
+  padding: 12px 4px 0;
+}
+.lv-card-info h3 {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  color: var(--ink);
+  font-size: clamp(15px, 1.1vw, 18px);
+  font-weight: 550;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.lv-card-price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 8px;
+  margin-top: 6px;
+}
+.lv-card-price strong {
+  font-size: clamp(26px, 2.1vw, 36px);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 1.05;
+  font-variant-numeric: tabular-nums;
+}
+.lv-card-price s {
+  color: var(--muted);
+  font-size: 15px;
+}
+.lv-card-source {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.lv-card-source b {
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+.lv-skel {
+  aspect-ratio: 4 / 4.7;
+  border-radius: 18px;
+  background: #eceee9;
+  animation: lv-breathe 1.6s ease-in-out infinite;
+}
+@keyframes lv-breathe {
+  50% {
+    opacity: 0.45;
+  }
+}
+
+/* ---------- runner QR (in the page title, top right) ---------- */
+.lv-qr {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 18px;
+  max-width: 440px;
+  min-width: 0;
+  padding: 12px 24px 12px 12px;
+  border-radius: var(--radius);
+  background: var(--mint);
+}
+.lv-qr-code {
+  position: relative;
+  flex-shrink: 0;
+  padding: 10px;
+  border-radius: 16px;
+  background: #fff;
+  line-height: 0;
+  box-shadow: 0 12px 30px #4266391f;
+  cursor: zoom-in;
+}
+.lv-qr-code > svg {
+  display: block;
+  width: 100px;
+  height: 100px;
+}
+/* A slow "scan me" ring: the one call to action the room has. */
+.lv-qr-code::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border: 2px solid var(--green);
+  border-radius: 20px;
+  opacity: 0;
+  pointer-events: none;
+  animation: lv-scan 3.2s var(--ease) 1.2s infinite;
+}
+@keyframes lv-scan {
+  0% {
+    opacity: 0.55;
+    transform: scale(0.97);
+  }
+  60%,
+  100% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+}
+.lv-qr-expand {
+  position: absolute;
+  right: -13px;
+  bottom: -13px; /* sits off the code's corner so it never covers modules */
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 2px solid var(--mint);
+  border-radius: 50%;
+  background: var(--ink);
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+}
+.lv-qr-copy {
+  min-width: 0;
+  max-width: 230px;
+}
+.lv-qr .lv-qr-copy h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(19px, 1.5vw, 24px);
+  font-weight: 550;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+}
+.lv-qr .lv-qr-copy > p {
+  margin: 6px 0 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.4;
+}
+.lv-qr-url {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  max-width: 100%;
+  min-height: 28px;
+  margin-top: 6px;
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 500;
+}
+.lv-qr-url span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lv-qr-url svg {
+  flex-shrink: 0;
+}
+.lv-qr-url:hover span {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.lv-qr .lv-warn,
+.lv-warn {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 10px 0 0;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: var(--warn-soft);
+  color: var(--warn);
+  font-size: 12px;
+  line-height: 1.4;
+}
+.lv-warn svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ---------- money banner (bottom; sticks to the bottom of the projector) ---------- */
+.lv-banner-wrap {
+  position: sticky;
+  bottom: calc(16px + var(--safe-bottom));
+  z-index: 30;
+  margin-top: 32px;
+}
+.lv-banner {
+  position: relative;
+  overflow: hidden;
+  padding: 22px 76px 20px 30px;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--ink);
+  box-shadow: 0 20px 60px #4b58c438;
+  transform-origin: 50% 100%;
+}
+.lv-banner.is-lifted {
+  box-shadow: 0 30px 80px #4b58c466;
+}
+.lv-banner-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(90% 170% at 10% 0%, #ffffff8c, #ffffff00 62%);
+  opacity: 0;
+  pointer-events: none;
+}
+.lv-banner-inner {
+  position: relative;
+}
+.lv-banner-row {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1.6vw, 26px);
+}
+.lv-banner-cell {
+  flex-shrink: 0; /* numbers never squeeze into each other... */
+  min-width: 0;
+}
+.lv-banner-sale {
+  flex-shrink: 1; /* ...the item name gives way instead (it ellipsises) */
+  min-width: 88px;
+}
+.lv-banner-cell > span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.lv-banner-sale > span {
+  display: block;
+  max-width: 32ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.lv-banner-cell strong {
+  display: block;
+  font-size: clamp(30px, 3.3vw, 56px);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.lv-banner-sale strong {
+  font-size: clamp(36px, 4vw, 68px);
+}
+.lv-banner-op {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  opacity: 0.55;
+}
+.lv-banner-total {
+  margin-left: auto;
+  padding-left: clamp(16px, 2vw, 32px);
+  border-left: 1px solid #1719182e;
+  text-align: right;
+}
+.lv-banner-total > span {
+  justify-content: flex-end;
+}
+.lv-banner-total small {
+  display: block;
+  margin-top: 6px;
+  color: var(--lv-on-accent-soft);
+  font-size: 12px;
+}
+.lv-banner .lv-split {
+  margin-top: 18px;
+}
+.lv-banner-new {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-right: 8px;
+  padding: 3px 8px;
+  border-radius: var(--pill);
+  background: var(--ink);
+  color: #fff;
+  font-style: normal;
+  letter-spacing: 0.06em;
+  vertical-align: 1px;
+}
+.lv-banner-open {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #ffffff40;
+  color: var(--ink);
+  opacity: 0.7;
+  transition:
+    opacity 0.2s,
+    background 0.2s,
+    transform 0.25s var(--ease);
+}
+.lv-banner-open:hover,
+.lv-banner-open:focus-visible {
+  opacity: 1;
+  background: #ffffffb3;
+  transform: scale(1.06);
+}
+.lv-banner-empty {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 32px;
+}
+.lv-banner-empty strong {
+  white-space: normal;
+}
+.lv-banner-empty p {
+  margin: 0;
+  color: var(--lv-on-accent-soft);
+  font-size: 15px;
+}
+.lv-banner :focus-visible,
+.lv-money :focus-visible {
+  outline-color: var(--ink);
+}
+
+/* Split bar + swatches (always sits on periwinkle) */
+.lv-split {
+  display: flex;
+  gap: 4px;
+  height: 10px;
+}
+.lv-split i {
+  display: block;
+  flex-basis: 0;
+  min-width: 8px;
+  border-radius: 4px;
+  transform-origin: 0 50%;
+}
+.lv-split-seller {
+  background: var(--paper);
+}
+.lv-split-runner {
+  background: var(--ink);
+}
+.lv-split-ours {
+  background: var(--lv-ours);
+}
+.lv-sw {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 1px #17191826;
+}
+
+/* ---------- overlays (money screen, big QR) ---------- */
+.lv-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.lv-overlay:focus {
+  outline: none; /* the dialog itself takes focus on open; its buttons keep their rings */
+}
+.lv-overlay-close {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #ffffff59;
+  color: var(--ink);
+  transition:
+    background 0.2s,
+    transform 0.25s var(--ease);
+}
+.lv-overlay-close:hover {
+  background: #fff;
+  transform: rotate(90deg);
+}
+
+.lv-money {
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+  padding: calc(20px + var(--safe-top)) clamp(20px, 5vw, 88px) calc(24px + var(--safe-bottom));
+  background: var(--accent);
+  color: var(--ink);
+}
+.lv-money p {
+  color: var(--lv-on-accent-soft);
+}
+.lv-money-orb {
+  position: absolute;
+  top: -38vmax;
+  right: -26vmax;
+  z-index: -1;
+  width: 84vmax;
+  height: 84vmax;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, #ffffff42, #ffffff00);
+  pointer-events: none;
+}
+.lv-money-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.lv-money-top .logo {
+  width: 132px;
+}
+.lv-money-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(16px, 3.2vh, 40px);
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: clamp(12px, 3vh, 40px) 0;
+}
+.lv-money-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.lv-money-item > img,
+.lv-money-ph {
+  flex-shrink: 0;
+  width: 58px;
+  height: 66px;
+  border-radius: 14px;
+  object-fit: cover;
+  background: #ffffff59;
+  box-shadow: 0 10px 30px #2b35a033;
+}
+.lv-money-ph {
+  display: grid;
+  place-items: center;
+}
+.lv-money-item > span {
+  font-size: clamp(16px, 1.6vw, 24px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.lv-money-item em,
+.lv-money-kicker {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.lv-money-sold {
+  margin: 6px 0 0;
+  font-size: min(15vw, 24vh);
+  font-weight: 500;
+  letter-spacing: -0.065em;
+  line-height: 0.95;
+  font-variant-numeric: tabular-nums;
+}
+.lv-money-sold.is-long {
+  font-size: min(10.5vw, 19vh);
+}
+.lv-money-cells {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr 1fr;
+  gap: clamp(12px, 1.6vw, 24px);
+}
+.lv-money-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding: clamp(18px, 2.6vh, 32px) clamp(18px, 2vw, 32px);
+  border-radius: var(--radius);
+}
+.lv-money-cell.is-seller {
+  background: var(--paper);
+  box-shadow: 0 24px 60px #2b35a038;
+}
+.lv-money-cell.is-runner {
+  background: var(--ink);
+  color: var(--paper);
+}
+.lv-money-cell.is-ours {
+  background: #ffffff38;
+}
+.lv-money-cell > span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.lv-money-cell strong {
+  font-size: min(6vw, 11vh);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.lv-money-cell.is-seller strong {
+  font-size: min(7.4vw, 13vh);
+  color: var(--accent-deep);
+}
+.lv-money-cell small {
+  font-size: 14px;
+  opacity: 0.85;
+}
+.lv-money-cell.is-runner .lv-sw {
+  box-shadow: inset 0 0 0 1px #ffffff59;
+}
+.lv-money-bar {
+  height: clamp(14px, 2.2vh, 24px);
+  gap: 6px;
+}
+.lv-money-bar i {
+  border-radius: 8px;
+}
+.lv-money-total {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 24px;
+  padding-top: clamp(14px, 2.4vh, 28px);
+  border-top: 1px solid #17191826;
+}
+.lv-money-total > span {
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.lv-money-total strong {
+  font-size: min(5.6vw, 9.5vh);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.lv-money-total small {
+  color: var(--lv-on-accent-soft);
+  font-size: 15px;
+}
+.lv-money-empty {
+  max-width: 1100px;
+  gap: clamp(16px, 3vh, 32px);
+}
+.lv-money-empty .lv-money-sold {
+  font-size: min(10vw, 17vh);
+  letter-spacing: -0.06em;
+}
+.lv-money-empty p {
+  max-width: 46ch;
+  font-size: clamp(17px, 1.6vw, 24px);
+  line-height: 1.5;
+}
+.lv-money-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+  margin-top: 14px;
+  font-size: 15px;
+  font-weight: 500;
+}
+.lv-money-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lv-qr-big {
+  display: grid;
+  place-items: center;
+  padding: calc(72px + var(--safe-top)) 24px calc(32px + var(--safe-bottom));
+  background: var(--mint);
+}
+.lv-qr-big .lv-overlay-close {
+  position: absolute;
+  top: calc(16px + var(--safe-top));
+  right: 16px;
+  background: #fff;
+}
+.lv-qr-big-inner {
+  display: flex;
+  align-items: center;
+  gap: clamp(24px, 5vw, 80px);
+  max-width: 1300px;
+}
+.lv-qr-big-code {
+  flex-shrink: 0;
+  padding: clamp(16px, 2vw, 28px);
+  border-radius: 28px;
+  background: #fff;
+  line-height: 0;
+  box-shadow: var(--shadow-lg);
+}
+.lv-qr-big-code svg {
+  display: block;
+  width: min(64vh, 50vw);
+  height: auto;
+}
+.lv-qr-big-copy h2 {
+  margin: 14px 0 12px;
+  font-size: clamp(40px, 5.4vw, 92px);
+}
+.lv-qr-big-copy p {
+  max-width: 26ch;
+  color: var(--ink-soft);
+  font-size: clamp(17px, 1.6vw, 24px);
+  line-height: 1.45;
+}
+.lv-qr-big-copy small {
+  display: block;
+  margin-top: 16px;
+  color: var(--green);
+  font-size: 14px;
+  word-break: break-all;
+}
+
+/* The operator's key confirmation: a 6px dot, bottom-left, 1.5 s. */
+.lv-keydot {
+  position: fixed;
+  bottom: calc(8px + var(--safe-bottom));
+  left: 8px;
+  z-index: 1100;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--muted);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.3s var(--ease),
+    background-color 0.2s;
+}
+.lv-keydot.is-pending {
+  opacity: 0.9;
+  background: var(--accent);
+  animation: lv-breathe 0.9s ease-in-out infinite;
+}
+.lv-keydot.is-ok {
+  opacity: 0.9;
+  background: #3fae62;
+}
+.lv-keydot.is-err {
+  opacity: 0.9;
+  background: var(--danger);
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 1279px) and (min-width: 1024px) {
+  /* The right column is ~500px here: two cards a row keep prices readable. */
+  .lv-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 1199px) {
+  .lv-banner-row {
+    gap: 20px;
+  }
+  .lv-banner-op {
+    display: none;
+  }
+  .lv-banner-cell strong {
+    font-size: clamp(26px, 3.2vw, 40px);
+  }
+  .lv-banner-sale strong {
+    font-size: clamp(30px, 3.8vw, 48px);
+  }
+  .lv-banner-sale > span {
+    max-width: 22ch;
+  }
+}
+/* Short desktop screens (1280x720 projectors, small laptops): a slimmer header, title and banner buy back room for the haggle. */
+@media (min-width: 1024px) and (max-height: 820px) {
+  .lv-page {
+    --lv-banner-space: 150px;
+  }
+  .lv-page .header {
+    height: 76px;
+  }
+  .lv-page .workspace {
+    padding-top: 18px;
+  }
+  .lv-page .workspace-title {
+    margin-bottom: 18px;
+  }
+  .lv-page .workspace-title h1 {
+    margin: 8px 0 6px;
+  }
+  .lv-qr {
+    padding: 10px 20px 10px 10px;
+  }
+  .lv-qr-code > svg {
+    width: 84px;
+    height: 84px;
+  }
+  .lv-banner {
+    padding: 14px 70px 14px 26px;
+  }
+  .lv-banner-cell > span {
+    margin-bottom: 6px;
+  }
+  .lv-banner-cell strong {
+    font-size: clamp(26px, 2.6vw, 40px);
+  }
+  .lv-banner-sale strong {
+    font-size: clamp(30px, 3vw, 46px);
+  }
+  .lv-banner .lv-split {
+    height: 8px;
+    margin-top: 12px;
+  }
+  .lv-banner-open {
+    top: 10px;
+    right: 10px;
+  }
+  .lv-chat {
+    max-height: clamp(200px, 30vh, 400px);
+  }
+}
+@media (max-width: 1023px) {
+  .lv-layout {
+    grid-template-columns: 1fr;
+  }
+  .lv-feed {
+    position: relative;
+    top: auto;
+    height: min(72vh, 600px);
+    min-height: 420px;
+  }
+  .lv-banner-wrap {
+    position: static; /* a tall grid banner would cover too much if it stuck */
+    margin-top: 24px;
+  }
+  .lv-banner {
+    padding: 24px 28px 22px;
+  }
+  .lv-banner-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px 16px;
+  }
+  .lv-banner-op {
+    display: none;
+  }
+  .lv-banner-sale,
+  .lv-banner-total {
+    grid-column: 1 / -1;
+  }
+  .lv-banner-sale > span {
+    max-width: calc(100% - 48px);
+  }
+  .lv-banner-total {
+    margin-left: 0;
+    padding: 16px 0 0;
+    border-left: 0;
+    border-top: 1px solid #1719182e;
+    text-align: left;
+  }
+  .lv-banner-total > span {
+    justify-content: flex-start;
+  }
+  .lv-banner-cell strong {
+    font-size: clamp(30px, 4.6vw, 44px);
+  }
+  .lv-banner-sale strong {
+    font-size: clamp(40px, 6vw, 60px);
+  }
+  .lv-banner-empty {
+    padding-right: 48px;
+  }
+  .lv-money-cells {
+    grid-template-columns: 1fr 1fr;
+  }
+  .lv-money-cell.is-seller {
+    grid-column: 1 / -1;
+  }
+  .lv-money-cell strong {
+    font-size: min(8vw, 9vh);
+  }
+  .lv-money-cell.is-seller strong {
+    font-size: min(11vw, 11vh);
+  }
+  .lv-qr-big-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+  .lv-qr-big-copy p {
+    margin: 0 auto;
+  }
+  .lv-qr-big-code svg {
+    width: min(56vh, 78vw);
+  }
+}
+@media (max-width: 767px) {
+  .lv-page {
+    --lv-gap: 16px;
+    --lv-panel-pad: 20px;
+  }
+  .lv-page .workspace {
+    padding-top: 26px;
+  }
+  .lv-page .workspace-title .eyebrow {
+    font-size: 11px;
+  }
+  .lv-page .workspace-title h1 {
+    font-size: 36px;
+  }
+  .lv-page .workspace-title > div:first-child {
+    flex-basis: 100%;
+  }
+  .lv-qr {
+    width: 100%;
+    max-width: none;
+    padding: 12px 18px 12px 12px;
+    gap: 16px;
+  }
+  .lv-qr-code > svg {
+    width: 88px;
+    height: 88px;
+  }
+  .lv-qr-copy {
+    max-width: none;
+  }
+  .lv-qr .lv-qr-copy h2 {
+    font-size: 20px;
+  }
+  .lv-qr-url {
+    min-height: 44px;
+    margin-top: 0;
+  }
+  .lv-head h2 {
+    font-size: 21px;
+  }
+  .lv-head-sub {
+    font-size: 13px;
+  }
+  .lv-feed {
+    height: min(70vh, 540px);
+    min-height: 380px;
+  }
+  .lv-event {
+    gap: 12px;
+    padding: 16px 12px;
+  }
+  .lv-actor {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+  }
+  .lv-actor svg {
+    width: 19px;
+    height: 19px;
+  }
+  .lv-event-text {
+    font-size: 16px;
+  }
+  .lv-event-meta {
+    font-size: 12px;
+  }
+  .lv-event-money {
+    font-size: 38px;
+  }
+  .lv-neg-photo {
+    width: 64px;
+    height: 76px;
+  }
+  .lv-neg-info strong {
+    font-size: 17px;
+  }
+  .lv-neg-link {
+    min-height: 44px;
+    margin-top: 0;
+  }
+  .lv-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 12px;
+  }
+  .lv-card-info h3 {
+    -webkit-line-clamp: 2;
+  }
+  .lv-card-price strong {
+    font-size: 24px;
+  }
+  .lv-card-source {
+    font-size: 12px;
+  }
+  .lv-stamp {
+    font-size: 18px;
+    padding: 4px 11px 3px 14px;
+  }
+  .lv-bubble {
+    max-width: 92%;
+    font-size: 16px;
+  }
+
+  .lv-banner {
+    padding: 22px 20px 20px;
+  }
+  .lv-banner-row {
+    gap: 16px 12px;
+  }
+  .lv-banner-cell > span {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+  }
+  .lv-banner-cell strong {
+    font-size: clamp(20px, 6.4vw, 30px);
+  }
+  .lv-banner-sale strong {
+    font-size: 46px;
+  }
+  .lv-banner-empty strong {
+    font-size: 30px;
+  }
+
+  .lv-money-sold {
+    font-size: min(21vw, 20vh);
+  }
+  .lv-money-sold.is-long {
+    font-size: min(14vw, 16vh);
+  }
+  .lv-money-cells {
+    grid-template-columns: 1fr;
+  }
+  .lv-money-cell {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 4px 12px;
+  }
+  .lv-money-cell strong,
+  .lv-money-cell.is-seller strong {
+    font-size: 40px;
+  }
+  .lv-money-cell small {
+    flex-basis: 100%;
+  }
+  .lv-money-total strong {
+    font-size: 44px;
+  }
+  .lv-money-total small {
+    flex-basis: 100%;
+  }
+  .lv-money-empty .lv-money-sold {
+    font-size: 15vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lv-live-dot::after,
+  .lv-typing i,
+  .lv-skel,
+  .lv-keydot.is-pending,
+  .lv-qr-code::after,
+  .lv-event.is-fresh::before {
+    animation: none; /* the newest event is already on top; the glow and the loops are decoration only */
+  }
+  .lv-neg-pick-img,
+  .lv-neg-img,
+  .lv-card-photo img,
+  .lv-overlay-close,
+  .lv-banner-open {
+    transition: none;
+  }
+}

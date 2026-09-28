@@ -1,0 +1,14 @@
+# Never upload the backend or any secrets to Vercel
+server
+.env
+.env.*
+**/.env
+**/.env.*
+node_modules
+dist
+.pnpm-store
+tests
+docs
+*.log
+stash-ui
+.vercel

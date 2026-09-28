@@ -1,0 +1,387 @@
+{
+  "pickups": [
+    {
+      "id": "p_kannk6",
+      "seller_name": "Priya",
+      "address": "41 Roman Road, Bethnal Green, London E2 0HU",
+      "transcript": "Okay, so, first up, Carhartt jacket, the Detroit one with the blanket lining. It's a large. Bought it off a stall on Brick Lane about five years ago. It's a bit worn on the cuffs but that's the look really. These are Levi's 501s, thirty-two thirty-two, barely worn them, they just don't fit me any more. Ralph Lauren jumper, the cable knit, green, medium. Bit bobbly under the arms but otherwise it's lovely. Harley tee, picked it up at a car boot in Essex, it's from Sturgis in '95, says it on the back. XL. This denim jacket, my nan embroidered the flowers on the back in the 80s. She did one for each of us grandkids and I wore mine all through uni. No label, it fits like a medium. I want £65 for it, it means a lot. And this last one's a white tee signed by Pete Doherty, got it signed after a gig in Camden in 2004. The collar's gone a bit yellow. That's it.",
+      "estimate_low": 20800,
+      "estimate_high": 30500,
+      "preview": [
+        { "label": "Carhartt Detroit jacket", "low": 6200, "high": 9500 },
+        { "label": "Levi's 501 jeans", "low": 2600, "high": 4000 },
+        { "label": "Ralph Lauren cable knit jumper", "low": 2900, "high": 4500 },
+        { "label": "Harley-Davidson 1995 Sturgis tee", "low": 3500, "high": 5400 },
+        { "label": "Hand-embroidered denim jacket", "low": 5200, "high": 6500 },
+        { "label": "White gig tee", "low": 400, "high": 600 }
+      ],
+      "status": "listed",
+      "runner_name": "Sam",
+      "created_at": "2026-09-26T07:12:04.180Z"
+    }
+  ],
+  "items": [
+    {
+      "id": "i_c1nzb8",
+      "pickup_id": "p_kannk6",
+      "label": "Carhartt Detroit jacket",
+      "brand": "Carhartt",
+      "type": "jacket",
+      "size": "L",
+      "grade": "B",
+      "condition_notes": [
+        "Worn in on the cuffs and collar",
+        "Small repaired tear by the left pocket",
+        "Blanket lining intact, zip works"
+      ],
+      "special": null,
+      "claim": null,
+      "claim_proof": null,
+      "seller_ask": null,
+      "price_source": "comps",
+      "price_confidence": "high",
+      "seller_story": "Bought it off a stall on Brick Lane about five years ago. It's a bit worn on the cuffs but that's the look really.",
+      "photo_requests": [],
+      "proof_request": null,
+      "seller_proof": [],
+      "photos": [
+        "https://images.unsplash.com/photo-1649937408746-4d2f603f91c8?w=900&q=80",
+        "https://placehold.co/900x1200/e9e4da/5b5346/jpeg?text=Carhartt+jacket+back",
+        "https://images.unsplash.com/photo-1734888765930-ce5ed0daa214?w=900&q=80",
+        "https://placehold.co/900x1200/e9e4da/5b5346/jpeg?text=Cuff+wear+close-up"
+      ],
+      "comps": [
+        { "source": "eBay", "title": "Vintage Carhartt Detroit Jacket J97 Brown Duck Blanket Lined Size L", "price": 9500, "url": "https://www.ebay.co.uk/itm/296418730512" },
+        { "source": "Depop", "title": "Carhartt Detroit jacket vintage brown, size large, lovely fade", "price": 8500, "url": "https://www.depop.com/products/thriftbyjaz-carhartt-detroit-jacket-vintage-brown/" },
+        { "source": "eBay", "title": "Carhartt J97 Detroit Work Jacket Blanket Lined Brown Mens L USA", "price": 11000, "url": "https://www.ebay.co.uk/itm/305872140966" },
+        { "source": "Vestiaire Collective", "title": "Carhartt Brown Cotton Jacket, L", "price": 12000, "url": "https://www.vestiairecollective.com/men-clothing/jackets/carhartt/brown-cotton-carhartt-jacket-47812235.shtml" },
+        { "source": "eBay", "title": "Vintage 90s Carhartt Detroit Jacket Brown Canvas Large Faded", "price": 8900, "url": "https://www.ebay.co.uk/itm/187123956410" }
+      ],
+      "list_price": 8100,
+      "floor_price": 5670,
+      "shopify_url": null,
+      "status": "listed"
+    },
+    {
+      "id": "i_sdwfsm",
+      "pickup_id": "p_kannk6",
+      "label": "Levi's 501 jeans",
+      "brand": "Levi's",
+      "type": "jeans",
+      "size": "W32 L32",
+      "grade": "A",
+      "condition_notes": [
+        "Even natural fading, no rips or stains",
+        "Button fly all intact"
+      ],
+      "special": null,
+      "claim": null,
+      "claim_proof": null,
+      "seller_ask": null,
+      "price_source": "comps",
+      "price_confidence": "high",
+      "seller_story": "Barely worn them, they just don't fit me any more.",
+      "photo_requests": [],
+      "proof_request": null,
+      "seller_proof": [],
+      "photos": [
+        "https://images.unsplash.com/photo-1714143136372-ddaf8b606da7?w=900&q=80",
+        "https://images.unsplash.com/photo-1601278085511-992ec3000c8a?w=900&q=80",
+        "https://images.unsplash.com/photo-1619471327033-3fb3b2b0d966?w=900&q=80",
+        "https://images.unsplash.com/photo-1727777840115-e173c91444e4?w=900&q=80"
+      ],
+      "comps": [
+        { "source": "eBay", "title": "Vintage Levi's 501 Jeans W32 L32 Mid Wash Button Fly", "price": 4000, "url": "https://www.ebay.co.uk/itm/276512093847" },
+        { "source": "Depop", "title": "levis 501 vintage straight leg w32 l32 mid blue", "price": 3500, "url": "https://www.depop.com/products/secondlapvintage-levis-501-vintage-straight-leg/" },
+        { "source": "ASOS Marketplace", "title": "Vintage Levi's 501 jeans in mid wash W32", "price": 4200, "url": "https://marketplace.asos.com/listing/jeans/vintage-levis-501-jeans-in-mid-wash-w32/7314592" },
+        { "source": "eBay", "title": "Levi's 501 Original Fit Jeans 32x32 Blue Stonewash", "price": 3800, "url": "https://www.ebay.co.uk/itm/335219876104" },
+        { "source": "eBay", "title": "Levis 501 Made in USA W32 L32 Faded Vintage 90s", "price": 4500, "url": "https://www.ebay.co.uk/itm/126587430219" }
+      ],
+      "list_price": 4000,
+      "floor_price": 2800,
+      "shopify_url": null,
+      "status": "sold"
+    },
+    {
+      "id": "i_getzcc",
+      "pickup_id": "p_kannk6",
+      "label": "Ralph Lauren cable knit jumper",
+      "brand": "Ralph Lauren",
+      "type": "hoodie",
+      "size": "M",
+      "grade": "B",
+      "condition_notes": [
+        "Light pilling under both arms",
+        "Pony logo embroidery intact"
+      ],
+      "special": null,
+      "claim": null,
+      "claim_proof": null,
+      "seller_ask": null,
+      "price_source": "comps",
+      "price_confidence": "medium",
+      "seller_story": "Bit bobbly under the arms but otherwise it's lovely.",
+      "photo_requests": [],
+      "proof_request": null,
+      "seller_proof": [],
+      "photos": [
+        "https://images.unsplash.com/photo-1670603917227-3fd6882dbf97?w=900&q=80",
+        "https://placehold.co/900x1200/e9e4da/5b5346/jpeg?text=Jumper+back",
+        "https://placehold.co/900x1200/e9e4da/5b5346/jpeg?text=Polo+Ralph+Lauren+label",
+        "https://placehold.co/900x1200/e9e4da/5b5346/jpeg?text=Pilling+under+the+arm"
+      ],
+      "comps": [
+        { "source": "eBay", "title": "Polo Ralph Lauren Cable Knit Jumper Green Cotton Mens M", "price": 4000, "url": "https://www.ebay.co.uk/itm/256734019822" },
+        { "source": "Depop", "title": "vintage ralph lauren cable knit jumper forest green medium", "price": 4500, "url": "https://www.depop.com/products/millieslocker-vintage-ralph-lauren-cable-knit/" },
+        { "source": "Vestiaire Collective", "title": "Polo Ralph Lauren Green Cotton Knitwear & Sweatshirt, M", "price": 5500, "url": "https://www.vestiairecollective.com/men-clothing/knitwear-sweatshirts/polo-ralph-lauren/green-cotton-polo-ralph-lauren-knitwear-sweatshirt-46120987.shtml" }
+      ],
+      "list_price": 3800,
+      "floor_price": 2660,
+      "shopify_url": null,
+      "status": "offer"
+    },
+    {
+      "id": "i_uutvnv",
+      "pickup_id": "p_kannk6",
+      "label": "Harley-Davidson 1995 Sturgis tee",
+      "brand": "Harley-Davidson",
+      "type": "t-shirt",
+      "size": "XL",
+      "grade": "B",
+      "condition_notes": [
+        "Light cracking on the back print",
+        "Collar slightly stretched"
+      ],
+      "special": "Dated 1995 Sturgis rally print",
+      "claim": null,
+      "claim_proof": null,
+      "seller_ask": null,
+      "price_source": "comps",
+      "price_confidence": "high",
+      "seller_story": "Picked it up at a car boot in Essex. It's from Sturgis in '95, says it on the back.",
+      "photo_requests": [],
+      "proof_request": null,
+      "seller_proof": [],
+      "photos": [
+        "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=900&q=80",
+        "https://placehold.co/900x1200/e9e4da/5b5346/jpeg?text=Sturgis+1995+back+print",
+        "https://placehold.co/900x1200/e9e4da/5b5346/jpeg?text=Single-stitch+hem"
+      ],
+      "comps": [
+        { "source": "eBay", "title": "Vintage 1995 Harley Davidson Sturgis Rally T-Shirt Black XL Single Stitch", "price": 4500, "url": "https://www.ebay.co.uk/itm/204981736520" },
+        { "source": "Depop", "title": "90s harley davidson sturgis tee black xl faded", "price": 4000, "url": "https://www.depop.com/products/bikerbarnvintage-90s-harley-davidson-sturgis-tee/" },
+        { "source": "eBay", "title": "Harley-Davidson 1995 Black Hills Rally Sturgis Tee XL USA Made", "price": 5000, "url": "https://www.ebay.co.uk/itm/316205871143" },
+        { "source": "Vestiaire Collective", "title": "Harley Davidson Black Cotton T-shirt, XL", "price": 6500, "url": "https://www.vestiairecollective.com/men-clothing/t-shirts/harley-davidson/black-cotton-harley-davidson-t-shirt-45982311.shtml" },
+        { "source": "eBay", "title": "Vintage Harley Davidson T Shirt 1990s Black XL Eagle Print", "price": 3500, "url": "https://www.ebay.co.uk/itm/167034829551" }
+      ],
+      "list_price": 4600,
+      "floor_price": 3220,
+      "shopify_url": null,
+      "status": "posted"
+    },
+    {
+      "id": "i_k2tu2q",
+      "pickup_id": "p_kannk6",
+      "label": "Hand-embroidered denim jacket",
+      "brand": null,
+      "type": "jacket",
+      "size": "Fits M",
+      "grade": "B",
+      "condition_notes": [
+        "Faded evenly all over",
+        "A few loose threads in the back embroidery",
+        "Top button replaced"
+      ],
+      "special": null,
+      "claim": "hand-embroidered by her nan in the 1980s",
+      "claim_proof": "https://images.unsplash.com/photo-1675438451024-2f9634ede383?w=900&q=80",
+      "seller_ask": 6500,
+      "price_source": "seller",
+      "price_confidence": "low",
+      "seller_story": "My nan embroidered the flowers on the back in the 80s. She did one for each of us grandkids and I wore mine all through uni.",
+      "photo_requests": [],
+      "proof_request": null,
+      "seller_proof": [
+        "https://placehold.co/900x1200/e9e4da/5b5346/jpeg?text=Nan+wearing+it+in+1987"
+      ],
+      "photos": [
+        "https://images.unsplash.com/photo-1612654442146-84f661a0bc25?w=900&q=80",
+        "https://placehold.co/900x1200/e9e4da/5b5346/jpeg?text=Embroidered+back",
+        "https://images.unsplash.com/photo-1675438451024-2f9634ede383?w=900&q=80"
+      ],
+      "comps": [
+        { "source": "Depop", "title": "vintage 80s denim jacket with floral embroidery, size m", "price": 3200, "url": "https://www.depop.com/products/rosiesrail-vintage-80s-denim-jacket-floral/" },
+        { "source": "eBay", "title": "Vintage Hand Embroidered Denim Jacket Flowers Blue Womens M", "price": 4000, "url": "https://www.ebay.co.uk/itm/395812047736" },
+        { "source": "Depop", "title": "embroidered jean jacket vintage mid wash", "price": 2800, "url": "https://www.depop.com/products/sundaysecondhand-embroidered-jean-jacket-vintage/" }
+      ],
+      "list_price": 6500,
+      "floor_price": 5200,
+      "shopify_url": null,
+      "status": "listed"
+    },
+    {
+      "id": "i_ul833m",
+      "pickup_id": "p_kannk6",
+      "label": "White gig tee",
+      "brand": null,
+      "type": "t-shirt",
+      "size": "L",
+      "grade": null,
+      "condition_notes": [
+        "Yellowing around the collar"
+      ],
+      "special": null,
+      "claim": "signed by Pete Doherty after a gig in 2004",
+      "claim_proof": null,
+      "seller_ask": null,
+      "price_source": "table",
+      "price_confidence": "low",
+      "seller_story": "Got it signed by Pete Doherty after a gig in Camden in 2004. The collar's gone a bit yellow.",
+      "photo_requests": [
+        "The signature is blurry, get a close-up in good light",
+        "Show the yellowing on the collar up close"
+      ],
+      "proof_request": "You said it's signed by Pete Doherty. Do you have a photo of it being signed, a ticket from the night or anything else from the gig?",
+      "seller_proof": [],
+      "photos": [
+        "https://images.unsplash.com/photo-1778671394516-8270eac13c42?w=900&q=80",
+        "https://placehold.co/900x1200/e9e4da/5b5346/jpeg?text=Tee+back",
+        "https://placehold.co/900x1200/e9e4da/5b5346/jpeg?text=Signature+(blurry)"
+      ],
+      "comps": [],
+      "list_price": 500,
+      "floor_price": 350,
+      "shopify_url": null,
+      "status": "needs_photos"
+    }
+  ],
+  "jobs": [
+    {
+      "id": "j_zmqz9c",
+      "type": "pickup",
+      "pickup_id": "p_kannk6",
+      "item_ids": ["i_c1nzb8", "i_sdwfsm", "i_getzcc", "i_uutvnv", "i_k2tu2q", "i_ul833m"],
+      "runner_name": "Sam",
+      "address": "41 Roman Road, Bethnal Green, London E2 0HU",
+      "pay": 3600,
+      "status": "done"
+    },
+    {
+      "id": "j_2w65s4",
+      "type": "post",
+      "pickup_id": "p_kannk6",
+      "item_ids": ["i_uutvnv"],
+      "runner_name": "Sam",
+      "address": "Post to Bristol BS6 5QA",
+      "pay": 600,
+      "status": "done"
+    },
+    {
+      "id": "j_m4r8vx",
+      "type": "post",
+      "pickup_id": "p_kannk6",
+      "item_ids": ["i_sdwfsm"],
+      "runner_name": "Sam",
+      "address": "Post to Manchester M20 2RN",
+      "pay": 600,
+      "status": "accepted"
+    }
+  ],
+  "offers": [
+    {
+      "id": "o_dxqval",
+      "item_id": "i_sdwfsm",
+      "buyer": "Grok Bot",
+      "amount": 2600,
+      "counter": 3300,
+      "round": 1,
+      "status": "countered",
+      "discount_code": null
+    },
+    {
+      "id": "o_cni1lp",
+      "item_id": "i_sdwfsm",
+      "buyer": "Grok Bot",
+      "amount": 3300,
+      "counter": null,
+      "round": 2,
+      "status": "accepted",
+      "discount_code": "OFFLOAD-WFSM-7KQ"
+    },
+    {
+      "id": "o_l1wcb4",
+      "item_id": "i_c1nzb8",
+      "buyer": "Marcus",
+      "amount": 4100,
+      "counter": 6100,
+      "round": 1,
+      "status": "countered",
+      "discount_code": null
+    },
+    {
+      "id": "o_tywum6",
+      "item_id": "i_c1nzb8",
+      "buyer": "Marcus",
+      "amount": 5000,
+      "counter": null,
+      "round": 2,
+      "status": "rejected",
+      "discount_code": null
+    },
+    {
+      "id": "o_abis7a",
+      "item_id": "i_getzcc",
+      "buyer": "Grok Bot",
+      "amount": 2400,
+      "counter": 3100,
+      "round": 1,
+      "status": "countered",
+      "discount_code": null
+    }
+  ],
+  "ledger": [
+    {
+      "id": "l_03qn0b",
+      "item_id": "i_uutvnv",
+      "sale_price": 4600,
+      "seller_amount": 3220,
+      "runner_amount": 600,
+      "our_amount": 780
+    },
+    {
+      "id": "l_lz8u61",
+      "item_id": "i_sdwfsm",
+      "sale_price": 3300,
+      "seller_amount": 2310,
+      "runner_amount": 600,
+      "our_amount": 390
+    }
+  ],
+  "events": [
+    { "id": "e_o9h234", "ts": "2026-09-26T07:12:04.212Z", "actor": "agent", "text": "Spotted 6 items. Expect £208 to £305.", "money": 30500 },
+    { "id": "e_1smgql", "ts": "2026-09-26T07:12:04.213Z", "actor": "agent", "text": "Noted you want £65 for the hand-embroidered denim jacket.", "money": null },
+    { "id": "e_pfgryh", "ts": "2026-09-26T07:12:04.214Z", "actor": "agent", "text": "Asked the seller for proof of the embroidery.", "money": null },
+    { "id": "e_uhkayh", "ts": "2026-09-26T07:12:04.215Z", "actor": "agent", "text": "Asked the seller for proof of the signature.", "money": null },
+    { "id": "e_8wpn13", "ts": "2026-09-26T07:13:31.402Z", "actor": "agent", "text": "Runner booked for pickup.", "money": null },
+    { "id": "e_cl61xu", "ts": "2026-09-26T07:15:12.877Z", "actor": "runner", "text": "Sam accepted the pickup at 41 Roman Road.", "money": null },
+    { "id": "e_vwcwrf", "ts": "2026-09-26T07:52:40.519Z", "actor": "runner", "text": "Sam collected 6 items from Priya.", "money": null },
+    { "id": "e_e1r3e3", "ts": "2026-09-26T08:05:10.064Z", "actor": "seller", "text": "Priya sent proof for the hand-embroidered denim jacket.", "money": null },
+    { "id": "e_mvlqen", "ts": "2026-09-26T08:18:22.731Z", "actor": "agent", "text": "Asked the runner for a clearer shot of the signature.", "money": null },
+    { "id": "e_gsz8rt", "ts": "2026-09-26T08:18:23.105Z", "actor": "agent", "text": "Couldn't find anything like the white gig tee online. What would you want for it?", "money": null },
+    { "id": "e_sf1gga", "ts": "2026-09-26T08:31:00.340Z", "actor": "agent", "text": "Holding back the white gig tee until the runner sends a clearer shot of the signature.", "money": null },
+    { "id": "e_7op85a", "ts": "2026-09-26T08:31:04.912Z", "actor": "agent", "text": "Listed the Carhartt Detroit jacket at £81.", "money": null },
+    { "id": "e_6b2nfn", "ts": "2026-09-26T08:31:05.388Z", "actor": "agent", "text": "Listed the Levi's 501 jeans at £40.", "money": null },
+    { "id": "e_2qenmz", "ts": "2026-09-26T08:31:05.921Z", "actor": "agent", "text": "Listed the Ralph Lauren cable knit jumper at £38.", "money": null },
+    { "id": "e_go9akt", "ts": "2026-09-26T08:31:06.447Z", "actor": "agent", "text": "Listed the Harley-Davidson 1995 Sturgis tee at £46.", "money": null },
+    { "id": "e_k7tj12", "ts": "2026-09-26T08:31:07.003Z", "actor": "agent", "text": "Listed the hand-embroidered denim jacket at £65.", "money": null },
+    { "id": "e_gnjyik", "ts": "2026-09-26T08:31:07.004Z", "actor": "agent", "text": "Similar ones sell around £32. Listed at your £65 anyway, I'll tell you if it's slow.", "money": null },
+    { "id": "e_0rdggc", "ts": "2026-09-26T08:57:41.260Z", "actor": "agent", "text": "Sold the Harley-Davidson 1995 Sturgis tee for £46. Priya gets £32.20.", "money": 4600 },
+    { "id": "e_y4lqja", "ts": "2026-09-26T09:04:15.618Z", "actor": "buyer", "text": "Grok Bot offered £26 for the Levi's 501 jeans. Countered at £33.", "money": null },
+    { "id": "e_ldao9k", "ts": "2026-09-26T09:05:02.093Z", "actor": "buyer", "text": "Grok Bot offered £33 for the Levi's 501 jeans. Accepted, code OFFLOAD-WFSM-7KQ takes £7 off.", "money": 3300 },
+    { "id": "e_0ldg9l", "ts": "2026-09-26T09:11:48.775Z", "actor": "agent", "text": "Sold the Levi's 501 jeans for £33. Priya gets £23.10.", "money": 3300 },
+    { "id": "e_yg6vq9", "ts": "2026-09-26T09:48:05.332Z", "actor": "runner", "text": "Sam posted the Harley-Davidson 1995 Sturgis tee. It's on its way to the buyer.", "money": null },
+    { "id": "e_izki5a", "ts": "2026-09-26T09:52:30.140Z", "actor": "buyer", "text": "Marcus offered £41 for the Carhartt Detroit jacket. Countered at £61.", "money": null },
+    { "id": "e_05pmlb", "ts": "2026-09-26T09:58:10.586Z", "actor": "buyer", "text": "Marcus came back at £50 for the Carhartt Detroit jacket. That's below what the seller will take, so I said a polite no.", "money": null },
+    { "id": "e_ji0co4", "ts": "2026-09-26T10:21:33.907Z", "actor": "buyer", "text": "Grok Bot offered £24 for the Ralph Lauren cable knit jumper. Countered at £31.", "money": null }
+  ]
+}
